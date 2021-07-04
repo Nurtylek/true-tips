@@ -1,0 +1,37 @@
+@import "variables.scss";
+
+*, *:after, *:before {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--primary-bg-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+h4, h5, p {
+  margin: 0;
+}
+
+.vue-star-rating {
+  justify-content: center;
+}
+
+img {
+  vertical-align: middle;
+}
+
+::selection {
+  background-color: var(--primary-green);
+  color: #fff;
+}
+
