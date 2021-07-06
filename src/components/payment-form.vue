@@ -2,7 +2,7 @@
   <div class="form__container">
     <form class="form">
       <div class="form__group">
-        <input class="input" placeholder="2500 тг." type="text" >
+        <input class="input" placeholder="2500 тг." type="text" inputmode="numeric" pattern="[0-9]*" v-model="inputValue">
         <img :src="imgUrl" alt="" class="input__clear">
       </div>
       <StarRating @onRatingSelected="selectRating"/>
@@ -32,12 +32,12 @@
         <button class="pay" @click="$event.preventDefault()">Оплатить картой</button>
       </div>
       <div class="policy">
-        <label for="1">
-          <input type="checkbox" id="1">
-          <span>Я хочу взять на себя транзакционные издержки (122 т.), чтобы сотрудник получил полную сумму</span>
+        <label for="10">
+          <input type="checkbox" id="10">
+          <span>Я хочу взять на себя транзакционные издержки ({{ commission }} т.), чтобы сотрудник получил полную сумму</span>
         </label>
-        <label for="2">
-          <input type="checkbox" id="2">
+        <label for="20">
+          <input type="checkbox" id="20">
           <span>Согласен с условиями <span class="highlight">Пользовательского соглашения</span> и <span class="highlight">Политики обработки персональных данных</span></span>
         </label>
       </div>
@@ -55,12 +55,15 @@ import good4 from './../assets/good-4.svg'
 
 import StarRating from '../components/star-rating.vue'
 
+const COMMISSION = 0.05;
+
 export default {
   components: {
     StarRating
   },
   data: () => {
     return {
+      inputValue: 2250,
       comment: '',
       imgUrl: clear,
       rating: null,
@@ -116,6 +119,11 @@ export default {
       return !!this.selectedGood.find(g => g.id === id)
     }
   },
+  computed: {
+    commission() {
+      return +this.inputValue * COMMISSION;
+    }
+  },
   watch: {
     rating(val) {
       if (val >= 4) {
@@ -150,6 +158,7 @@ export default {
   width: 100%;
   font-size: 20px;
   color: var(--text-color);
+  padding-left: 40%;
 }
 
 .input::placeholder {
